@@ -1,6 +1,10 @@
 package com.ambrin.store
 
 import java.math.BigDecimal
+import com.ambrin.store.ItemConstants.APPLE_ITEM
+import com.ambrin.store.ItemConstants.APPLE_PRICE
+import com.ambrin.store.ItemConstants.ORANGE_ITEM
+import com.ambrin.store.ItemConstants.ORANGE_PRICE
 
 class InMemoryItemRepository : ItemRepository {
     private val itemMap = mapOf(
@@ -10,13 +14,5 @@ class InMemoryItemRepository : ItemRepository {
 
     override fun getPrice(item: String): BigDecimal {
         return itemMap[item] ?: BigDecimal.ZERO
-    }
-
-    companion object {
-        const val APPLE_ITEM = "Apple"
-        const val APPLE_PRICE = "0.60"
-
-        const val ORANGE_ITEM = "Orange"
-        const val ORANGE_PRICE = "0.25"
     }
 }
