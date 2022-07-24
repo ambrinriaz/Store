@@ -12,7 +12,7 @@ class OrderService(
     private val subscriberList = mutableListOf<Subscriber>()
 
     fun calculatePrice(items: List<String>): BigDecimal {
-        return Order(itemRepository, offerRepository, items).calculatePrice()
+        return Order(itemRepository, offerRepository, items).total
     }
 
     fun addSubscriber(subscriber: Subscriber) {
@@ -20,13 +20,22 @@ class OrderService(
     }
 
     fun processOrder(items: List<String>) {
-        val price = calculatePrice(items)
+        val order = Order(itemRepository, offerRepository, items)
 
-        val event = Event(
-            Status.COMPLETED,
-            LocalDate.now().plusDays(DEFAULT_DELIVERY_TIME_IN_DAYS),
-            price
-        )
+        val event = try {
+            order.processOrder()
+
+            Event(
+                status = Status.COMPLETED,
+                deliveryDate = LocalDate.now().plusDays(DEFAULT_DELIVERY_TIME_IN_DAYS),
+                price = order.total
+            )
+        } catch (ex: IllegalStateException) {
+            Event(
+                status = Status.FAILED,
+                message = ex.message
+            )
+        }
 
         subscriberList.forEach { subscriber -> subscriber.notify(event) }
     }

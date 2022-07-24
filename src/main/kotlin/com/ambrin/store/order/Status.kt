@@ -1,5 +1,6 @@
 package com.ambrin.store.order
 
 enum class Status {
-    COMPLETED
+    COMPLETED,
+    FAILED
 }

@@ -9,7 +9,7 @@ fun main(args: Array<String>) {
     val items = args.toList()
 
     val orderService = OrderService(
-        InMemoryItemRepository(),
+        InMemoryItemRepository(1, 1),
         InMemoryOfferRepository()
     )
 
