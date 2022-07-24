@@ -1,6 +1,6 @@
 package com.ambrin.store.offers
 
-import com.ambrin.store.Offer
+import com.ambrin.store.order.Offer
 import java.math.BigDecimal
 
 class BogoOffer : Offer {

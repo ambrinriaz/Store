@@ -4,6 +4,9 @@ import com.ambrin.store.ItemConstants.APPLE_ITEM
 import com.ambrin.store.ItemConstants.APPLE_PRICE
 import com.ambrin.store.ItemConstants.ORANGE_ITEM
 import com.ambrin.store.ItemConstants.ORANGE_PRICE
+import com.ambrin.store.order.OrderService
+import com.ambrin.store.repository.InMemoryItemRepository
+import com.ambrin.store.repository.InMemoryOfferRepository
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -11,10 +14,14 @@ import java.math.BigDecimal
 
 class OrderTest {
     private lateinit var orderService: OrderService
-    
+
     @BeforeEach
     fun setUp() {
-        orderService = OrderService(InMemoryItemRepository(), InMemoryOfferRepository())
+        orderService =
+            OrderService(
+                InMemoryItemRepository(),
+                InMemoryOfferRepository()
+            )
     }
 
     @Test

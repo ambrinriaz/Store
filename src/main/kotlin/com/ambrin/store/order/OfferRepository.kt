@@ -1,5 +1,6 @@
-package com.ambrin.store
+package com.ambrin.store.order
 
 interface OfferRepository {
+
     fun getOffer(item: String): Offer
 }

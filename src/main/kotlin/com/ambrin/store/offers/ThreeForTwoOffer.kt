@@ -1,9 +1,9 @@
 package com.ambrin.store.offers
 
-import com.ambrin.store.Offer
+import com.ambrin.store.order.Offer
 import java.math.BigDecimal
 
-class ThreeForTwoOffer: Offer {
+class ThreeForTwoOffer : Offer {
 
     override fun calculateDiscount(count: Int, price: BigDecimal): BigDecimal {
         val multiplier = BigDecimal(count / 3)

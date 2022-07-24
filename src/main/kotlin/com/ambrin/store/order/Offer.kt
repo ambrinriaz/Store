@@ -1,4 +1,4 @@
-package com.ambrin.store
+package com.ambrin.store.order
 
 import java.math.BigDecimal
 
